@@ -37,7 +37,7 @@ void getCircle(Mat& gray, Vec3i& res) {
 
 void findPointer(Mat& dst, Vec4i& res) {
   vector<Vec4i> lines;
-  HoughLinesP(dst, lines, 1, CV_PI/180, 80, 30, 10);
+  HoughLinesP(dst, lines, 1, CV_PI / 180, 80, dst.rows / 5, dst.rows / 60);
   cout << "pointer found: " << lines.size() << endl;
   for (size_t i = 0; i < lines.size(); i++)
   {
@@ -49,12 +49,8 @@ void findPointer(Mat& dst, Vec4i& res) {
       return min(dis(x[0], x[1], dst.rows / 2, dst.cols / 2), dis(x[2], x[3], dst.rows / 2, dst.cols / 2))
       < min(dis(y[0], y[1], dst.rows / 2, dst.cols / 2), dis(y[2], y[3], dst.rows / 2, dst.cols / 2));
       } );
-  for (auto i = lines.begin(); i != lines.end(); i++)
-    if (dis((*i)[0], (*i)[1], (*i)[2], (*i)[3]) > dst.rows / 4) {
-      res = *i;
-      return ;
-    }
-  res = lines[0];
+  if (lines.size())
+    res = lines[0];
 }
 
 int main(int argc, char** argv)
@@ -75,11 +71,14 @@ int main(int argc, char** argv)
   cvtColor(src, gray, COLOR_BGR2GRAY);
   medianBlur(gray, gray, 3);
   Canny(gray, dst, 50, 200, 3);
+//  threshold(gray, dst, 110, 255, THRESH_BINARY);
+//  bitwise_not(dst, dst);
+  imshow("2", dst);
 
 // ----------------------------------------------------
 
   Vec3i circleBorder;
-  getCircle(dst, circleBorder);
+  getCircle(gray, circleBorder);
 
   Point center(circleBorder[0], circleBorder[1]);
   int borderR = circleBorder[2];
@@ -99,13 +98,18 @@ int main(int argc, char** argv)
 
 // ----------------------------------------------------
 
+  Mat opDst(cutDst);
+  dilate(cutDst, opDst, Mat(), Point(-1,-1), 3);
+  erode(opDst, opDst, Mat(), Point(-1,-1), 2);
+  imshow("opDst", opDst);
+
   Vec4i pointer;
-  findPointer(cutDst, pointer);
+  findPointer(opDst, pointer);
   line(src, Point(pointer[0], pointer[1]), Point(pointer[2], pointer[3]), Scalar(0, 0, 255), 2, 8);
 
 // ----------------------------------------------------
 
-  imshow("cutDst", cutDst);
+  imshow("lines", opDst);
   imshow("detected circles", src);
   //imshow("dst", dst);
   waitKey();
