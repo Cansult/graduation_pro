@@ -11,6 +11,7 @@ private:
   int radi_;
   cv::Vec4i pointer_;
   double Dis(const cv::Point2d&, const cv::Point2d&);
+  double Dis(const cv::Point2d&, const cv::Vec4i&);
   void SetBinary(const cv::Mat&);
   void SetCircle(const cv::Mat&);
   void SetPointer(const cv::Mat&);
