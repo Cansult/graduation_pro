@@ -69,19 +69,19 @@ include CMakeFiles/Gradu.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Gradu.dir/flags.make
 
-CMakeFiles/Gradu.dir/Gradu.cc.o: CMakeFiles/Gradu.dir/flags.make
-CMakeFiles/Gradu.dir/Gradu.cc.o: /Users/chenyankuan/Documents/College/Hough/Gradu.cc
-CMakeFiles/Gradu.dir/Gradu.cc.o: CMakeFiles/Gradu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/chenyankuan/Documents/College/Hough/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Gradu.dir/Gradu.cc.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Gradu.dir/Gradu.cc.o -MF CMakeFiles/Gradu.dir/Gradu.cc.o.d -o CMakeFiles/Gradu.dir/Gradu.cc.o -c /Users/chenyankuan/Documents/College/Hough/Gradu.cc
+CMakeFiles/Gradu.dir/main.cc.o: CMakeFiles/Gradu.dir/flags.make
+CMakeFiles/Gradu.dir/main.cc.o: /Users/chenyankuan/Documents/College/Hough/main.cc
+CMakeFiles/Gradu.dir/main.cc.o: CMakeFiles/Gradu.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/chenyankuan/Documents/College/Hough/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Gradu.dir/main.cc.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Gradu.dir/main.cc.o -MF CMakeFiles/Gradu.dir/main.cc.o.d -o CMakeFiles/Gradu.dir/main.cc.o -c /Users/chenyankuan/Documents/College/Hough/main.cc
 
-CMakeFiles/Gradu.dir/Gradu.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Gradu.dir/Gradu.cc.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/chenyankuan/Documents/College/Hough/Gradu.cc > CMakeFiles/Gradu.dir/Gradu.cc.i
+CMakeFiles/Gradu.dir/main.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Gradu.dir/main.cc.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/chenyankuan/Documents/College/Hough/main.cc > CMakeFiles/Gradu.dir/main.cc.i
 
-CMakeFiles/Gradu.dir/Gradu.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Gradu.dir/Gradu.cc.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/chenyankuan/Documents/College/Hough/Gradu.cc -o CMakeFiles/Gradu.dir/Gradu.cc.s
+CMakeFiles/Gradu.dir/main.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Gradu.dir/main.cc.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/chenyankuan/Documents/College/Hough/main.cc -o CMakeFiles/Gradu.dir/main.cc.s
 
 CMakeFiles/Gradu.dir/Hough.cc.o: CMakeFiles/Gradu.dir/flags.make
 CMakeFiles/Gradu.dir/Hough.cc.o: /Users/chenyankuan/Documents/College/Hough/Hough.cc
@@ -99,13 +99,13 @@ CMakeFiles/Gradu.dir/Hough.cc.s: cmake_force
 
 # Object files for target Gradu
 Gradu_OBJECTS = \
-"CMakeFiles/Gradu.dir/Gradu.cc.o" \
+"CMakeFiles/Gradu.dir/main.cc.o" \
 "CMakeFiles/Gradu.dir/Hough.cc.o"
 
 # External object files for target Gradu
 Gradu_EXTERNAL_OBJECTS =
 
-Gradu: CMakeFiles/Gradu.dir/Gradu.cc.o
+Gradu: CMakeFiles/Gradu.dir/main.cc.o
 Gradu: CMakeFiles/Gradu.dir/Hough.cc.o
 Gradu: CMakeFiles/Gradu.dir/build.make
 Gradu: /opt/homebrew/lib/libopencv_gapi.4.8.1.dylib

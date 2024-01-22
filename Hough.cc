@@ -1,5 +1,6 @@
 #include "Hough.h"
 #include <iostream>
+#include <cstdio>
 #include <cmath>
 
 YoloResult::YoloResult(const char *filename) {
@@ -46,9 +47,6 @@ void YoloResult::SetCircle(const cv::Mat& from) {
   center_ = cv::Point2i(circles[0][0], circles[0][1]);
   radi_ = circles[0][2];
 
-  cv::Mat mask = cv::Mat::zeros(from.size(), CV_8UC1);
-  cv::circle(mask, center_, radi_, cv::Scalar(255, 255, 255), cv::FILLED, cv::LINE_AA);
-  from.copyTo(gray_, mask);
 }
 
 void YoloResult::SetPointer(const cv::Mat& from) {
@@ -76,21 +74,68 @@ void YoloResult::SetPointer(const cv::Mat& from) {
   pointer_ = lines[0];
 }
 
-void YoloResult::SetBinary(const cv::Mat& from) {
-  Canny(from, dst_, 50, 200, 3);
-//  threshold(gray, dst, 110, 255, THRESH_BINARY);
-//  bitwise_not(dst, dst);
+cv::Mat YoloResult::GetBackground(const cv::Mat& from, int win_2)
+{
+  int win_size = 2 * win_2 + 1;
+  cv::Mat tmp;
+  // 首先对原图进行边缘填充
+  cv::copyMakeBorder(from , tmp, win_2, win_2, win_2, win_2, cv::BORDER_REPLICATE);
+  // 中值滤波
+//  cv::medianBlur(tmp, tmp, 9);
 
+  cv::Mat dst(from.size(), CV_8UC1);
+  for (int i = win_2; i < tmp.rows - win_2; i++)
+  {
+    uchar *pd = dst.ptr<uchar>(i - win_2);
+    for (int j = win_2; j < tmp.cols - win_2; j++)
+    {
+      cv::Mat now;
+      //截取每一个点周围的矩形邻域
+      tmp(cv::Rect(j - win_2, i - win_2, win_size, win_size)).copyTo(now);
+      //将二维矩阵转换成一维数据
+      now.reshape(1, 1).copyTo(now);
+      cv::sort(now, now, cv::SORT_EVERY_ROW + cv::SORT_ASCENDING);
+
+      uchar *p = now.ptr<uchar>(0);
+      pd[j - win_2] = (uchar)((p[now.cols - 1] + p[now.cols - 2] + p[now.cols - 3] + p[now.cols - 4] + p[now.cols - 5]) * 0.2);
+    }
+  }
+
+//  imshow("from", from);
+  imshow("background", dst);
+  return dst;
+}
+
+
+void YoloResult::SetBinary(const cv::Mat& from) {
+  imshow("bef back", from);
+  cv::Mat background = GetBackground(from, from.rows / 25);
+//  Canny(from, dst_, 50, 200, 3);
+  cv::Mat dst(from.size(), CV_8UC1);
+  for (int i = 0; i < dst.rows; i++)
+    for (int j = 0; j < dst.cols; j++) {
+      int tmp = (int)from.at<uchar>(i, j) + 255 - background.at<uchar>(i, j);
+      dst.at<uchar>(i, j) = tmp >= 110 ? 255 : tmp;
+    }
+
+  imshow("bef2", dst);
+  cv::threshold(dst, dst, 100, 255, cv::THRESH_BINARY);
+  cv::bitwise_not(dst, dst);
+
+  cv::Mat mask = cv::Mat::zeros(from.size(), CV_8UC1);
+  cv::circle(mask, center_, radi_, cv::Scalar(255, 255, 255), cv::FILLED, cv::LINE_AA);
+  dst.copyTo(dst_, mask);
+  imshow("aft2", dst_);
 }
 
 void YoloResult::DilAndEro(cv::Mat& from) {
   const int kerN = 60;
   cv::Mat ker = getStructuringElement(cv::MORPH_RECT, cv::Size(from.rows / kerN, from.rows / kerN));
-  cv::dilate(from, from, ker, cv::Point(-1,-1));
-  cv::erode(from, from, ker, cv::Point(-1,-1));
+  cv::dilate(from, from, ker, cv::Point(-1, -1));
+  cv::erode(from, from, ker, cv::Point(-1, -1));
 }
 
-void YoloResult::GetResult(double& readNum) {
+double YoloResult::GetResult() {
   SetCircle(src_);
   SetBinary(gray_);
   DilAndEro(dst_);
@@ -103,4 +148,6 @@ void YoloResult::GetResult(double& readNum) {
   cv::line(src_, cv::Point(pointer_[0], pointer_[1]), cv::Point(pointer_[2], pointer_[3]), cv::Scalar(0, 0, 255), 2, 8);
 
   cv::imshow("detected pointer", src_);
+  double re = 0;
+  return re;
 }

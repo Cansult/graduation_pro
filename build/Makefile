@@ -129,30 +129,6 @@ Gradu/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/build
 .PHONY : Gradu/fast
 
-Gradu.o: Gradu.cc.o
-.PHONY : Gradu.o
-
-# target to build an object file
-Gradu.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/Gradu.cc.o
-.PHONY : Gradu.cc.o
-
-Gradu.i: Gradu.cc.i
-.PHONY : Gradu.i
-
-# target to preprocess a source file
-Gradu.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/Gradu.cc.i
-.PHONY : Gradu.cc.i
-
-Gradu.s: Gradu.cc.s
-.PHONY : Gradu.s
-
-# target to generate assembly for a file
-Gradu.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/Gradu.cc.s
-.PHONY : Gradu.cc.s
-
 Hough.o: Hough.cc.o
 .PHONY : Hough.o
 
@@ -177,6 +153,30 @@ Hough.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/Hough.cc.s
 .PHONY : Hough.cc.s
 
+main.o: main.cc.o
+.PHONY : main.o
+
+# target to build an object file
+main.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/main.cc.o
+.PHONY : main.cc.o
+
+main.i: main.cc.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/main.cc.i
+.PHONY : main.cc.i
+
+main.s: main.cc.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/main.cc.s
+.PHONY : main.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +186,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Gradu"
-	@echo "... Gradu.o"
-	@echo "... Gradu.i"
-	@echo "... Gradu.s"
 	@echo "... Hough.o"
 	@echo "... Hough.i"
 	@echo "... Hough.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 
