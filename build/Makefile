@@ -117,41 +117,65 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Hough
+# Target rules for targets named Gradu
 
 # Build rule for target.
-Hough: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Hough
-.PHONY : Hough
+Gradu: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Gradu
+.PHONY : Gradu
 
 # fast build rule for target.
-Hough/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Hough.dir/build.make CMakeFiles/Hough.dir/build
-.PHONY : Hough/fast
+Gradu/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/build
+.PHONY : Gradu/fast
 
-Hough.o: Hough.cpp.o
+Gradu.o: Gradu.cc.o
+.PHONY : Gradu.o
+
+# target to build an object file
+Gradu.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/Gradu.cc.o
+.PHONY : Gradu.cc.o
+
+Gradu.i: Gradu.cc.i
+.PHONY : Gradu.i
+
+# target to preprocess a source file
+Gradu.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/Gradu.cc.i
+.PHONY : Gradu.cc.i
+
+Gradu.s: Gradu.cc.s
+.PHONY : Gradu.s
+
+# target to generate assembly for a file
+Gradu.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/Gradu.cc.s
+.PHONY : Gradu.cc.s
+
+Hough.o: Hough.cc.o
 .PHONY : Hough.o
 
 # target to build an object file
-Hough.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Hough.dir/build.make CMakeFiles/Hough.dir/Hough.cpp.o
-.PHONY : Hough.cpp.o
+Hough.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/Hough.cc.o
+.PHONY : Hough.cc.o
 
-Hough.i: Hough.cpp.i
+Hough.i: Hough.cc.i
 .PHONY : Hough.i
 
 # target to preprocess a source file
-Hough.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Hough.dir/build.make CMakeFiles/Hough.dir/Hough.cpp.i
-.PHONY : Hough.cpp.i
+Hough.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/Hough.cc.i
+.PHONY : Hough.cc.i
 
-Hough.s: Hough.cpp.s
+Hough.s: Hough.cc.s
 .PHONY : Hough.s
 
 # target to generate assembly for a file
-Hough.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Hough.dir/build.make CMakeFiles/Hough.dir/Hough.cpp.s
-.PHONY : Hough.cpp.s
+Hough.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Gradu.dir/build.make CMakeFiles/Gradu.dir/Hough.cc.s
+.PHONY : Hough.cc.s
 
 # Help Target
 help:
@@ -161,7 +185,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Hough"
+	@echo "... Gradu"
+	@echo "... Gradu.o"
+	@echo "... Gradu.i"
+	@echo "... Gradu.s"
 	@echo "... Hough.o"
 	@echo "... Hough.i"
 	@echo "... Hough.s"
